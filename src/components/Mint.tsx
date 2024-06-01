@@ -27,6 +27,7 @@ import { uploadEncryptedFile, uploadPublicFile, uploadJSON } from '../utils/ipfs
 import { Metaplex, walletAdapterIdentity, keypairIdentity, bundlrStorage, toMetaplexFile, toBigNumber, toDateTime, sol, TransactionBuilder} from "@metaplex-foundation/js";
 import { clusterApiUrl, PublicKey } from '@solana/web3.js';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 
 const MintStep = styled.div`
@@ -543,7 +544,7 @@ const ConfirmSection = (props:{
             <MintStep>Step 4: Confirm Your NFT Mint</MintStep>
             <div className="flex mb-5">
                 <div className="p-5">
-                    {props.imageUrl? <img width={300} height={300} src={props.imageUrl}/> : <h1>No Image Detected</h1>}
+                    {props.imageUrl? <Image width={300} height={300} src={props.imageUrl} alt="NFT Image" /> : <h1>No Image Detected</h1>}
                 </div>
                 <div className="ml-5 w-100">
                     <CardInformation>
@@ -629,7 +630,7 @@ const CompletedSection = ({cid}) =>{
             <CompletionTitle>NFT Minting Completed!</CompletionTitle>
                 <div className="flex justify-content-center align-items-center w-100 mt-5" style={{ textAlign: 'center' }}>
                     <div style={{ margin: '0 auto' }}>
-                        <img src={"https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmWvJwxPEHmFygSWWdWNeKqkYiZ5kufvjmd5jSkbBEPP62"} width="150" height="150" />
+                        <Image src={"https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmWvJwxPEHmFygSWWdWNeKqkYiZ5kufvjmd5jSkbBEPP62"} width="150" height="150" alt="Confetti" />
                     </div>
                 </div>
             </ButtonContainer>
