@@ -11,7 +11,7 @@ export const Profile: FC = ({}) => {
     <div className="md:hero mx-auto p-4 w-100">
         <div className="text-center w-100">
             <h1>Profile Page</h1>
-            {wallet.publicKey.toString()}
+            {wallet.publicKey? wallet.publicKey.toString(): "Wallet Not Detected"}
             <Gallery/>
         </div>
     </div>
