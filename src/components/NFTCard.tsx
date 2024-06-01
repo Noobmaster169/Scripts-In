@@ -8,6 +8,7 @@ import NFT from 'pages/nft/[id]';
 import { useRouter } from 'next/router';
 import AES from 'crypto-js/aes';
 import { enc } from 'crypto-js/core';
+import Image from 'next/image';
 
 
 const CardDisplay = styled.div`
@@ -191,7 +192,7 @@ export const NFTCard = ({id}) =>{
             </CardTitle>
             <CardBody>
                 <CardImage>
-                <img src={image} alt="NFT Image" width={200} height={200}/>
+                <Image src={image} alt="NFT Image" width={200} height={200}/>
                 </CardImage>
                 <CardInformation>
                     <CardAttribute>

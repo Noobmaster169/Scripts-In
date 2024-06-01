@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import {Input} from 'antd';
+import Image from 'next/image';
 
 const TitleSection = styled.div`
     width: 100%;
@@ -63,7 +64,7 @@ export const Title = () =>{
         <>
         <TitleSection>
             <TitleImage>
-                <img src="https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmZrDYiJobeSHyiaq84XBiEKNS9nfVV3vsjyRtkWcreHWp" height={200} width={200}/>
+                <Image src="https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmZrDYiJobeSHyiaq84XBiEKNS9nfVV3vsjyRtkWcreHWp" height={200} width={200} alt="Document Image" />
             </TitleImage>
             <div>
                 <TitleInformation>
@@ -73,7 +74,7 @@ export const Title = () =>{
                     </ColoredTitle>
                 </TitleInformation>
                 <TitleDescription>
-                    <p>"Empowering Solana To Monetize Your Data"</p>
+                    <p>&quot;Empowering Solana To Monetize Your Data&quot;</p>
                 </TitleDescription>
                 <Button onClick={routeCreate}>
                     Create NFTs

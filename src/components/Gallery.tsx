@@ -16,6 +16,7 @@ import { nftStorageUploader } from '@metaplex-foundation/umi-uploader-nft-storag
 import sellinLogo from '../../public/solanaLogo.png';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const quicknodeEndpoint = process.env.NEXT_PUBLIC_RPC || clusterApiUrl('devnet');
 
@@ -94,7 +95,7 @@ export const Gallery = ()=> {
                 
                 NFTDisplays.push(
                     <GalleryCard onClick={() => {route.push(`/nft/${address}`)}}>
-                        <img width="300" height="300" src={ nft.json.image} />
+                        <Image width="300" height="300" src={ nft.json.image } alt="NFT Display" />
                         <Cardinformation>
                             <CardTitle>{nft.json.name}</CardTitle>
                             <CardPrice>NOT LISTED</CardPrice>
