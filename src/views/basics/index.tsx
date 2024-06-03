@@ -4,6 +4,7 @@ import { SignMessage } from '../../components/SignMessage';
 import { SendTransaction } from '../../components/SendTransaction';
 import { SendVersionedTransaction } from '../../components/SendVersionedTransaction';
 import { BlogPost } from '../../components/ContractCall';
+import { RequestAirdrop } from "components/RequestAirdrop";
 
 export const BasicsView: FC = ({ }) => {
 
@@ -21,6 +22,7 @@ export const BasicsView: FC = ({ }) => {
           <SignMessage />
           <SendTransaction />
           <SendVersionedTransaction />
+          <RequestAirdrop/>
         </div>
       </div>
     </div>

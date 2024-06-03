@@ -88,7 +88,7 @@ export const BlogPost = ()=>{
     async function makePost(){
         console.log("Posting Data");
         const title = "HELLO WORLD"
-        const content = "Does this work? Thank you for the content."
+        const content = "Tes"
         
         const provider = new anchor.AnchorProvider(connection, wallet, anchor.AnchorProvider.defaultOptions())
         const program =  new anchor.Program<any>(BlogIDL, CONTRACT_ADDRESS, provider)
@@ -102,6 +102,7 @@ export const BlogPost = ()=>{
 
         if(!wallet){
             notify({ type: 'error', message: `Wallet Not Detected!`});
+            return;
         }
         if(user.lastPostId){
             try{
