@@ -1,8 +1,6 @@
 import Image from 'next/image'
-import React, { useState, useRef } from 'react'
-import { AiFillHeart } from 'react-icons/ai';
-import { IoShareSocialSharp } from "react-icons/io5";
-import { IoEllipsisHorizontal } from "react-icons/io5";
+import React, { useState, useRef, use, useEffect } from 'react'
+import { generateRandomNumber } from 'utils/ipfs'
 
 const placeholderComments = [
   {
@@ -11,7 +9,7 @@ const placeholderComments = [
     usertag: "uB85aVoa5n239jaA89Vmalo17LIf4",
     commentText: "This is awesome!",
     timeSincePost: "2h",
-    likes: 652,
+    // likes: 652,
     shares: 89
   },
   {
@@ -20,7 +18,7 @@ const placeholderComments = [
     usertag: "aB93cVoZ5p23jzA8Vmalp17LIg8uY85a6n249k90man8LJf9vC9dVob759C1Xmao19LK",
     commentText: "Lenovo Yoga Pro 7 is the best laptop I've ever used!",
     timeSincePost: "49m",
-    likes: 428,
+    // likes: 428,
     shares: 51
   },
   {
@@ -29,7 +27,7 @@ const placeholderComments = [
     usertag: "uY85bVoa6n249kaB90Wmano18LJf9",
     commentText: "We love Monash University Malaysia! The best University I have ever seen!",
     timeSincePost: "28d",
-    likes: 129,
+    // likes: 129,
     shares: 40
   },
   {
@@ -38,15 +36,21 @@ const placeholderComments = [
     usertag: "vC95dVob7o259lbC91Xmaoo19LKg0",
     commentText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Tincidunt eget nullam non nisi est sit amet. Sollicitudin ac orci phasellus egestas. Ac orci phasellus egestas tellus rutrum tellus. Blandit aliquam etiam erat velit scelerisque. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet. Ut ornare lectus sit amet est placerat in egestas.",
     timeSincePost: "5mo",
-    likes: 4,
+    // likes: 4,
     shares: 1
   },
-]
+].map((comment) => ({
+  ...comment,
+  likes: 0,
+}))
 
 const CommentCard = () => {
+  const { AiFillHeart } = require('react-icons/ai');
+  const { IoShareSocialSharp, IoEllipsisHorizontal } = require('react-icons/io5');
+
   const commentRef = useRef(null);
   const [comment, setComment] = useState<string>("");
-
+  
   // Usestates only for placeholder and demonstration, remove when using real data and database
   const [likedComments, setLikedComments] = useState<Set<string>>(new Set()); // use set for quick add and delete
   const [likes, setLikes] = useState<{ [key: string]: number }>(
@@ -55,6 +59,19 @@ const CommentCard = () => {
       return acc;
     }, {})
   );
+
+  useEffect(() => {
+    const updateLikes = async () => {
+      const newLikes = { ...likes };
+      for (const comment of placeholderComments) {
+        const randomLikes = await generateRandomNumber(comment.commentText, 50);
+        newLikes[comment._id] = randomLikes;
+      }
+      setLikes(newLikes);
+    }
+
+    updateLikes();
+  }, [])
 
   const toggleLike = (id: string) => {
     const newLikedComments = new Set(likedComments);
