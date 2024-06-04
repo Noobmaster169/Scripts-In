@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import React, { useState, useRef } from 'react'
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
+import { IoShareSocialSharp } from "react-icons/io5";
+import { IoEllipsisHorizontal } from "react-icons/io5";
 
 const placeholderComments = [
   {
@@ -57,6 +59,7 @@ const CommentCard = () => {
   const toggleLike = (id: string) => {
     const newLikedComments = new Set(likedComments);
     const newLikes = { ...likes };
+
     if (newLikedComments.has(id)) {
       newLikedComments.delete(id);
       newLikes[id] -= 1;
@@ -87,7 +90,7 @@ const CommentCard = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center rounded-md border-[#3c3c3c] border-2 max-w-[800px]">
+    <div className="flex flex-col justify-center rounded-md border-[#3c3c3c] border-2 max-w-[800px] bg-[#1e1e1e] shadow-lg">
       {/* Create Comment */}
       <div className="flex items-start border-b border-[#3c3c3c] border-1 gap-5 py-5">
         {/* Profile Picture */}
@@ -124,7 +127,8 @@ const CommentCard = () => {
 
       {/* Display Comments */}
       {placeholderComments.map((comment, index) => (
-          <div className="flex items-start border-b border-[#3c3c3c] border-1 gap-5 py-5 max-w-full">
+        <div className="flex justify-between py-5">
+          <div className="flex items-start border-b border-[#3c3c3c] border-1 gap-5 max-w-full">
             {/* Profile Picture */}
             <Image
               src="/favicon.ico"
@@ -149,18 +153,28 @@ const CommentCard = () => {
               </div>
     
               {/* Like & Share Button */}
-              <div className="flex mt-4 items-center gap-2">
-                <div onClick={() => toggleLike(comment._id)}>
+              <div className="flex mt-4 items-center gap-5">
+                <div className="flex gap-2 cursor-pointer items-center" onClick={() => toggleLike(comment._id)}>
                   {likedComments.has(comment._id) ? (
-                    <AiFillHeart className="text-[#e6007e] text-lg cursor-pointer" />
+                    <AiFillHeart className="text-[#e6007e] text-lg" />
                   ) : (
-                    <AiOutlineHeart className="text-[#cecece] text-lg cursor-pointer" />
+                    <AiFillHeart className="text-[#cecece] text-lg" />
                   )}
+                  <p className="text-sm font-bold mb-[1px]">{likes[comment._id]}</p>
                 </div>
-                <p className="text-sm font-bold mb-[1px]">{likes[comment._id]}</p>
+                <div className="flex gap-2 cursor-pointer items-center">
+                  <IoShareSocialSharp className="text-[#cecece] text-lg" />
+                  <p className="text-sm font-bold mb-[1px]">{comment.shares}</p>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Ellipsis */}
+          <div>
+            <IoEllipsisHorizontal className="text-[#cecece] text-lg mr-5 cursor-pointer" />
+          </div>
+        </div>
       ))}
     </div>
   )
