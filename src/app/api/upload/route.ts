@@ -4,13 +4,13 @@ import { NextResponse, NextRequest } from "next/server";
 
 export const dynamic = 'force-dynamic'
   
-// export const config = {
-//   api: {
-//       bodyParser: false,
-//   },
-// };
+export const config = {
+  api: {
+      bodyParser: false,
+  },
+};
 
-const POST = async (request: NextRequest) => {
+export async function POST(request: NextRequest) {
     try {
         const data = await request.formData();
         const file: File | null = data.get("file") as unknown as File;
@@ -38,8 +38,6 @@ const POST = async (request: NextRequest) => {
         );
     }
 }
-
-export default POST;
 
 //const upload = multer({ dest: 'uploads/' });
 
