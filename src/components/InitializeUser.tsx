@@ -11,6 +11,7 @@ import { utf8 } from '@project-serum/anchor/dist/cjs/utils/bytes';
 import { notify } from "../utils/notifications";
 import { generateRandomUser } from '../utils/initializeUser';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 const CONTRACT_ADDRESS = new PublicKey(BlogIDL.metadata.address);
@@ -21,8 +22,15 @@ export const InitializeUser = () =>{
     
     const {userName, userAvatar} = generateRandomUser();
     const [pending, setPending] = useState(false);
+    const [created, setCreated] = useState(false);
+
+    const route = useRouter();
+    const openProfile = () =>{
+        route.push(`/profile`)
+    }
 
     const connect = async () =>{
+        
         setPending(true);
         if(!wallet){
             notify({ type: 'error', message: `Wallet Not Detected!`});
@@ -32,7 +40,7 @@ export const InitializeUser = () =>{
                 const program =  new anchor.Program<any>(BlogIDL, CONTRACT_ADDRESS, provider)
                 const [userPda] = findProgramAddressSync([utf8.encode('user'), wallet.publicKey.toBuffer()], program.programId)
                 
-                await program.methods
+                const signature = await program.methods
                 .initUser(userName, userAvatar)
                 .accounts({
                     userAccount: userPda,
@@ -41,8 +49,8 @@ export const InitializeUser = () =>{
                 })
                 .rpc()
                 
-                
-                notify({ type: 'success', message: 'Account successfully created!'});
+                notify({ type: 'success', message: 'Account successfully created!', txid: signature});
+                setCreated(true);
             }catch(e){
                 console.log(e);
                 notify({ type: 'error', message: `Account Creation failed!`, description: e?.message});
@@ -61,14 +69,19 @@ export const InitializeUser = () =>{
             </CardContainer>
             <CardName>{userName}</CardName>
             <CardContainer>
-                {pending? 
-                    <InitButton>
-                        Pending...
-                    </InitButton> 
-                    : 
-                    <InitButton onClick={connect}>
-                        Create User
+                {created? 
+                    <InitButton onClick={openProfile}>
+                        Open Profile
                     </InitButton>
+                    :
+                    pending? 
+                        <InitButton>
+                            Pending...
+                        </InitButton> 
+                        : 
+                        <InitButton onClick={connect}>
+                            Create Account
+                        </InitButton>
                 }
             </CardContainer>
         </CardDisplay>

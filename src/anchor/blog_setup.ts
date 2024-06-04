@@ -9,34 +9,14 @@ import { Buffer } from 'buffer';
 
 import { findProgramAddressSync } from '@project-serum/anchor/dist/cjs/utils/pubkey';
 import { utf8 } from '@project-serum/anchor/dist/cjs/utils/bytes';
-// function getProgram(provider) {
-//     return new Program(idl, PROGRAM_KEY, provider);
-// }
-
-// const wallet = useAnchorWallet();
-// const { connection } = useConnection();
-// const provider = new AnchorProvider(connection, wallet, {});
-// const program = getProgram(provider);
-
-
-
-// const programId = new PublicKey(BlogIDL.metadata.address);
-// const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-
-// export const program = new Program<any>(BlogIDL, programId, {
-//     connection,
-// });
-
-//Don't Forget to install Anchor
 
 export async function getPostById(postId:any, program:any) {
-  console.log("Calling getPost function");
   try {
     const post = await program.account.postAccount.fetch(new PublicKey(postId));
     
     //Try to console data
-    console.log("System whatever:", SystemProgram.programId.toString());
-    console.log("Post Data:", post);
+    // console.log("System whatever:", SystemProgram.programId.toString());
+    // console.log("Post Data:", post);
     
     const userId = post.user.toString();
     if (userId === SystemProgram.programId.toString()) {
@@ -54,7 +34,6 @@ export async function getPostById(postId:any, program:any) {
 }
 
 export async function getAccount(wallet:any, program:any, user:any){
-  console.log("Searching for accounts");
   try{
     //Search for All the Posts
     if (user) {
@@ -66,13 +45,11 @@ export async function getAccount(wallet:any, program:any, user:any){
   }
 }
 
-export async function getUser(wallet:any, program:any){
+export async function getUser(wallet:any, program:any, searched:PublicKey=null){
+  const searchedKey = searched? searched: wallet.publicKey
   try{
-    const [userPda] = await findProgramAddressSync([utf8.encode('user'), wallet.publicKey.toBuffer()], program.programId);
+    const [userPda] = await findProgramAddressSync([utf8.encode('user'), searchedKey.toBuffer()], program.programId);
     const user = await program.account.userAccount.fetch(userPda);
-    console.log("User Detected");
-    console.log(user.authority.toString());
-    
     return user;
   }catch(e){
     console.log("Error Fetching User Data");

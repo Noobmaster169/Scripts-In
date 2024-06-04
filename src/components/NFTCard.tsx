@@ -10,65 +10,6 @@ import AES from 'crypto-js/aes';
 import { enc } from 'crypto-js/core';
 import Image from 'next/image';
 
-
-const CardDisplay = styled.div`
-    width: 800px;
-    background: #1e1e1e;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    margin: auto;
-    overflow: hidden;
-`;
-const CardTitle = styled.div`
-    background-color: #333;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    font-size:30px;
-`
-const CardBody = styled.div`
-    padding: 0px 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-`
-const CardImage = styled.div`
-    padding: 15px;
-    width: 40%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-`
-const CardInformation = styled.div`
-    padding: 15px;
-    width: 60%;
-`
-const CardAttribute = styled.div`
-    margin: 5px 0;
-    padding: 10px;
-    background: #2a2a2a;
-    border-radius: 5px;
-    color: #ddd;
-    text-align:left;
-`
-const AttributeTitle = styled.div`
-    font-weight: bold;
-`
-const DecryptButton = styled.div`
-    background-color: #e6007e;
-    color: #fff;
-    padding: 8px 20px;
-    font-weight: bold;
-    font-size: 20px;
-    border: none;
-    cursor: pointer;
-    display: block;
-    width: auto;
-    text-align: center;
-    margin-top: 15px;
-    border-radius: 5px;
-`
-
 const quicknodeEndpoint = process.env.NEXT_PUBLIC_RPC || clusterApiUrl('devnet');
 
 export const NFTCard = ({id}) =>{
@@ -222,3 +163,61 @@ export const NFTCard = ({id}) =>{
         </>
     )
 }
+
+const CardDisplay = styled.div`
+    width: 800px;
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    margin: auto;
+    overflow: hidden;
+`;
+const CardTitle = styled.div`
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    font-size:30px;
+`
+const CardBody = styled.div`
+    padding: 0px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`
+const CardImage = styled.div`
+    padding: 15px;
+    width: 40%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+`
+const CardInformation = styled.div`
+    padding: 15px;
+    width: 60%;
+`
+const CardAttribute = styled.div`
+    margin: 5px 0;
+    padding: 10px;
+    background: #2a2a2a;
+    border-radius: 5px;
+    color: #ddd;
+    text-align:left;
+`
+const AttributeTitle = styled.div`
+    font-weight: bold;
+`
+const DecryptButton = styled.div`
+    background-color: #e6007e;
+    color: #fff;
+    padding: 8px 20px;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    width: auto;
+    text-align: center;
+    margin-top: 15px;
+    border-radius: 5px;
+`

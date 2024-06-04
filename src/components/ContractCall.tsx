@@ -87,8 +87,8 @@ export const BlogPost = ()=>{
 
     async function makePost(){
         console.log("Posting Data");
-        const title = "HELLO WORLD"
-        const content = "Tes"
+        const title = "953EiExPMGpdJn3kSNxfyjz3jM2VMXSr1EBkuJCCVqCU"
+        const content = "This topic is interesting..."
         
         const provider = new anchor.AnchorProvider(connection, wallet, anchor.AnchorProvider.defaultOptions())
         const program =  new anchor.Program<any>(BlogIDL, CONTRACT_ADDRESS, provider)

@@ -20,8 +20,8 @@ export const AppBar: React.FC = () => {
       {/* NavBar / Header */}
       <div className="navbar flex h-20 flex-row md:mb-2 shadow-lg bg-black text-neutral-content border-b border-zinc-600 bg-opacity-66">
         <div className="navbar-start align-items-center">
-          <div className="hidden sm:inline w-22 h-22 md:p-2 ml-10">
-            <Image src={"https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmczpZP76huJbRVsKnRFzTQNbyEfgVYtffGzHbzKfH8bQL"} alt="Scripts In Logo" width={240} height={48} />
+          <div className="hidden sm:inline w-22 h-22 md:p-2 ml-5">
+            <Image src={"https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmczpZP76huJbRVsKnRFzTQNbyEfgVYtffGzHbzKfH8bQL"} alt="Scripts In Logo" width={250} height={48} />
           </div>
           <WalletMultiButtonDynamic className="btn-ghost btn-sm relative flex md:hidden text-lg " />
         </div>

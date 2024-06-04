@@ -3,6 +3,47 @@ import { useRouter } from 'next/router';
 import {Input} from 'antd';
 import Image from 'next/image';
 
+export const Title = () =>{
+
+    const router= useRouter();
+
+    const routeCreate = () => {router.push('/create')};
+
+    return(
+        <>
+        <TitleSection>
+            <TitleImage>
+                <Image src="https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmZrDYiJobeSHyiaq84XBiEKNS9nfVV3vsjyRtkWcreHWp" height={200} width={200} alt="Document Image" />
+            </TitleImage>
+            <div>
+                <TitleInformation>
+                    <p>Tokenize Your Data Into</p>
+                    <ColoredTitle className="font-bold text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to-fuchsia-500">
+                        ENCRYPTED NFTs
+                    </ColoredTitle>
+                </TitleInformation>
+                <TitleDescription>
+                    <p>&quot;Igniting Incentivized Social Community&quot;</p>
+                </TitleDescription>
+                <Button onClick={routeCreate}>
+                    Create NFTs
+                </Button>  
+            </div>
+        </TitleSection>
+        <SearchContainer>
+            <Search
+                placeholder="Search NFT By Address"
+                enterButton="Search"
+                size="large"
+                style={{width:"50%", backgroundColor:"blue", borderRadius:"10px", padding:"3px 3px 1px 3px", marginTop:"10px"}}
+                onSearch={(address) => {console.log("Searching to", address); router.push(`/nft/${address}`)}}
+            /> 
+        </SearchContainer>
+        </>
+    )
+}
+
+const { Search } = Input;
 const TitleSection = styled.div`
     width: 100%;
     text-align: center;
@@ -50,46 +91,4 @@ const SearchContainer = styled.div`
     display:flex;
     justify-content: center;
     align-items: center;
-
 `
-const { Search } = Input;
-
-export const Title = () =>{
-
-    const router= useRouter();
-
-    const routeCreate = () => {router.push('/create')};
-
-    return(
-        <>
-        <TitleSection>
-            <TitleImage>
-                <Image src="https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmZrDYiJobeSHyiaq84XBiEKNS9nfVV3vsjyRtkWcreHWp" height={200} width={200} alt="Document Image" />
-            </TitleImage>
-            <div>
-                <TitleInformation>
-                    <p>Tokenize Your Data Into</p>
-                    <ColoredTitle className="font-bold text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to-fuchsia-500">
-                        ENCRYPTED NFTs
-                    </ColoredTitle>
-                </TitleInformation>
-                <TitleDescription>
-                    <p>&quot;Empowering Solana To Monetize Your Data&quot;</p>
-                </TitleDescription>
-                <Button onClick={routeCreate}>
-                    Create NFTs
-                </Button>  
-            </div>
-        </TitleSection>
-        <SearchContainer>
-            <Search
-                placeholder="Search NFT By Address"
-                enterButton="Search"
-                size="large"
-                style={{width:"50%", backgroundColor:"blue", borderRadius:"10px", padding:"3px 3px 1px 3px", marginTop:"10px"}}
-                onSearch={(address) => {console.log("Searching to", address); router.push(`/nft/${address}`)}}
-            /> 
-        </SearchContainer>
-        </>
-    )
-}
