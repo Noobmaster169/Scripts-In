@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { secondsToMinutes } from 'date-fns';
 import { Metaplex, walletAdapterIdentity, bundlrStorage} from "@metaplex-foundation/js";
+import { generateRandomNumber } from '../utils/ipfs';
 
 const CONTRACT_ADDRESS = new PublicKey(BlogIDL.metadata.address);
 const WalletMultiButtonDynamic = dynamic(
@@ -89,19 +90,19 @@ export const ProfileView = ()=>{
                 </>)
             }else{
                 setResponse(
-                <CardDisplay>
-                    <ErrorNotification>You Haven't Been Registered As A User</ErrorNotification>
-                    <CardContainer>
-                        <Image width="300" height="300" src ="https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmYDF3xNce1wsBAxoQ4ayRYhyXzWjSYRDVZp4RphufG9PH" alt="Account Not Found"/>
-                    </CardContainer>
-                    <CardContainer>
-                        <ConnectButton onClick={createAccount}>
-                            <ButtonFont>
-                                Create New Account
-                            </ButtonFont>
-                        </ConnectButton>
-                    </CardContainer>
-                </CardDisplay>
+                    <CardDisplay>
+                        <ErrorNotification>You Haven't Been Registered As A User</ErrorNotification>
+                        <CardContainer>
+                            <Image width="300" height="300" src ="https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmYDF3xNce1wsBAxoQ4ayRYhyXzWjSYRDVZp4RphufG9PH" alt="Account Not Found"/>
+                        </CardContainer>
+                        <CardContainer>
+                            <ConnectButton onClick={createAccount}>
+                                <ButtonFont>
+                                    Create New Account
+                                </ButtonFont>
+                            </ConnectButton>
+                        </CardContainer>
+                    </CardDisplay>
                 );
             }
         }else{
@@ -131,7 +132,7 @@ export const ProfileView = ()=>{
 }
 
 
-const PostSection = ({wallet, program, connection}) =>{
+export const PostSection = ({wallet, program, connection}) =>{
     const[loading, setLoading] = useState(false);
     const[posts, setPosts] = useState<any>();    
 
@@ -160,33 +161,38 @@ const PostSection = ({wallet, program, connection}) =>{
     
     return(
         <>
-        <CardContainer>
-            <ProfileTitle>
-                Latest Posts
-            </ProfileTitle>
-        </CardContainer>
         <div>
+            <CardContainer>
+                <ProfileTitle>
+                    Latest Posts
+                </ProfileTitle>
+            </CardContainer>
             {posts ? posts.map((item)=>{
-                return(<CardDisplay>
-                    <PostDisplay
-                        address = {item.account.title}
-                        wallet = {wallet}
-                        item = {item}
-                        connection = {connection}
-                        program = {program}
-                    />
-                </CardDisplay>);
+                return(
+                    <div>
+                        <PostDisplay
+                            address = {item.account.title}
+                            wallet = {wallet}
+                            item = {item}
+                            connection = {connection}
+                            program = {program}
+                        />
+                    </div>
+                );
             }): "No Post Detected"}
         </div>
         </>
     )
 }
 
-const PostDisplay = ({address, wallet, item, connection, program}) =>{
-    
+export const PostDisplay = ({address, wallet, item, connection, program}) =>{
     const quicknodeEndpoint = process.env.NEXT_PUBLIC_RPC || clusterApiUrl('devnet');
+    const { AiFillHeart } = require('react-icons/ai');
+    const { IoShareSocialSharp, IoEllipsisHorizontal } = require('react-icons/io5');
     
     const [NFTData, setNFTData] = useState<any>();
+    const [likes, setLikes] = useState(0);
+    const [liked, setLiked] = useState(false);
 
     const METAPLEX = Metaplex.make(connection)
         .use(walletAdapterIdentity(wallet))
@@ -195,15 +201,27 @@ const PostDisplay = ({address, wallet, item, connection, program}) =>{
             providerUrl: quicknodeEndpoint,
             timeout: 60000,
         }));
+    const toggleLike = ()=>{
+        if(liked){
+            setLikes(likes -1);
+            setLiked(false);
+        }else{
+            setLikes(likes +1);
+            setLiked(true);
+        }
+    }
     
     async function searchNFT(address){
         try{
             const mintAddress = new PublicKey(address);
             const nft: any = await METAPLEX.nfts().findByMint({ mintAddress }, { commitment: "finalized" });
             //console.log("NFT:", nft)
+            const generatedLikes = await generateRandomNumber(item.account.content, 50);
             
             const user:any = await getUser(wallet, program);
+            console.log("Setting NFT Data")
             setNFTData(
+                <CardDisplay>
                 <PostContainer>
                     <PostImage>
                         <Image width="250" height="250" src={nft.json.image} alt="Account Not Found"/>
@@ -213,19 +231,41 @@ const PostDisplay = ({address, wallet, item, connection, program}) =>{
                         <p>Created By: {nft.creators[0].address.toString()}</p>
                         <UserContainer>
                             <PostProfileImage>
-                                <Image width="80" height="80" src={user.avatar} alt="Account Not Found"/>
+                                <Image width="50" height="50" src={item.user? item.user.avatar : user.avatar} alt="Account Not Found"/>
                             </PostProfileImage>
                             <div>
-                                <UserName>{user.name}</UserName>
-                                <UserAddress>{item.account.authority.toString()}</UserAddress>  
+                                <UserName>{item.user? item.user.name :user.name}</UserName>
+                                <UserAddress>{item.user? item.user.authority.toString() :item.account.authority.toString()}</UserAddress>  
                             </div>
                         </UserContainer>
-
+                        
                         <PostContent>
                             {item.account.content}
                         </PostContent>
+                        <div className="flex items-start gap-5 max-w-full">
+                            <div className="flex flex-col w-full mr-5 max-w-full px-3.5">   
+                                <div className="flex mt-4 items-center gap-5">
+                                <div className="flex gap-2 cursor-pointer items-center" onClick={() => toggleLike()}>
+                                    {liked ? (
+                                    <AiFillHeart className="text-[#e6007e] text-lg" />
+                                    ) : (
+                                    <AiFillHeart className="text-[#cecece] text-lg" />
+                                    )}
+                                    <p className="text-sm font-bold mb-[1px]">{generatedLikes}</p>
+                                </div>
+                                <div className="flex gap-2 cursor-pointer items-center">
+                                    <IoShareSocialSharp className="text-[#cecece] text-lg" />
+                                    <p className="text-sm font-bold mb-[1px]">{parseInt(generatedLikes / 2.5)}</p>
+                                </div>
+                                <div>
+                                <IoEllipsisHorizontal className="text-[#cecece] text-lg mr-5 cursor-pointer" />
+                                </div>
+                                </div>
+                            </div>
+                        </div>
                     </ProfileInfo>
                 </PostContainer>
+                </CardDisplay>
             )
         }catch(error){
             setNFTData(<></>)
@@ -247,10 +287,12 @@ const ProfileTitle = styled.div`
     font-weight: bold;
     border-bottom: 2px solid white;
     width: 200px;
+    margin-bottom: 15px;
 `
 const ProfileInfo = styled.div`
     text-align:left;
     margin: 0px 30px;
+    width: 500px;
 `
 const ProfileName = styled.div`
     font-size: 35px;
@@ -275,11 +317,12 @@ const PostImage = styled.div`
     overflow: hidden;
 `
 const PostProfileImage = styled.div`
-    width: 70px;
-    height:70px;
+    width: 50px;
+    height:50px;
     border-radius: 50px;
     background: #ffffff;
     overflow: hidden;
+    margin-right: 20px;
 `
 const ErrorNotification = styled.div`
     margin-top:20px;
@@ -293,7 +336,7 @@ const CardDisplay = styled.div`
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     margin: auto;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 `;
 const CardImage = styled.div`
     width: 250px;
@@ -322,7 +365,8 @@ const PostContainer = styled.div`
 `
 const UserContainer = styled.div`
     display:flex;
-    padding: 10px 0px;
+    margin: 10px 0px;
+    
 `
 const InfoData = styled.div`
     margin-right: 20px;

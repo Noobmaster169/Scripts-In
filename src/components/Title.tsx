@@ -13,13 +13,13 @@ export const Title = () =>{
         <>
         <TitleSection>
             <TitleImage>
-                <Image src="https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmZrDYiJobeSHyiaq84XBiEKNS9nfVV3vsjyRtkWcreHWp" height={200} width={200} alt="Document Image" />
+                <Image src="https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmczgmvVffgZgRjRQTvvWcXBWguLKKeHpKE4s7KJfr7J1p" height={200} width={200} alt="Document Image" />
             </TitleImage>
             <div>
                 <TitleInformation>
-                    <p>Tokenize Your Data Into</p>
+                    <p>Empower Your Community with:</p>
                     <ColoredTitle className="font-bold text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to-fuchsia-500">
-                        ENCRYPTED NFTs
+                        Exclusive Content NFTs
                     </ColoredTitle>
                 </TitleInformation>
                 <TitleDescription>
@@ -66,7 +66,7 @@ const TitleImage = styled.div`
     justify-content: center;
     align-items: center;
     margin-left: 15px;
-    margin-right: 10px;
+    margin-right: 25px;
 `
 const TitleDescription = styled.div`
     font-size: 18px;

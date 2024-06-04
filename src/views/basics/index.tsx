@@ -3,7 +3,6 @@ import { FC } from "react";
 import { SignMessage } from '../../components/SignMessage';
 import { SendTransaction } from '../../components/SendTransaction';
 import { SendVersionedTransaction } from '../../components/SendVersionedTransaction';
-import { BlogPost } from '../../components/ContractCall';
 import { RequestAirdrop } from "components/RequestAirdrop";
 
 export const BasicsView: FC = ({ }) => {
@@ -15,9 +14,7 @@ export const BasicsView: FC = ({ }) => {
           Basics
         </h1>
         {/* CONTENT GOES HERE */}
-        <div className="text-center">
-          <BlogPost/>
-          
+        <div className="text-center"> 
           <h1>EMPTY</h1>
           <SignMessage />
           <SendTransaction />

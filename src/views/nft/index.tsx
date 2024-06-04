@@ -2,7 +2,7 @@ import { FC } from "react";
 import {NFTCard} from '../../components/NFTCard';
 import { notify } from "../../utils/notifications";
 import { useRouter } from 'next/router';
-import CommentCard from "components/CommentCard";
+import {CommentCard} from "components/CommentCard";
 
 type NFTViewProps = {
   id: string | string[];
@@ -14,7 +14,7 @@ export const NFTView: React.FC<NFTViewProps> = ({ id }) => {
         <div className="text-center w-100">
             <div className="flex flex-col gap-10">
               {id && <NFTCard id={id}/>}
-              <CommentCard />
+              {id && <CommentCard id ={id} />}
             </div>
         </div>
     </div>
