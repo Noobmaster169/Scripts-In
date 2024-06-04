@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import AES from 'crypto-js/aes';
 import { enc } from 'crypto-js/core';
 import Image from 'next/image';
+import CommentCard from './CommentCard';
 
 
 const CardDisplay = styled.div`
