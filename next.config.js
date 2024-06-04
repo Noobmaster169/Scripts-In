@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["ivory-vivacious-rooster-272.mypinata.cloud"],
+    domains: ["ivory-vivacious-rooster-272.mypinata.cloud", "gravatar.com"],
   }
 }
 

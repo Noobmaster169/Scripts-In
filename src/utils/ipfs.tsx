@@ -22,6 +22,7 @@ export async function uploadEncryptedFile(fileToUpload){
         method: "POST",
         body: data
     });
+    console.log("Encrypted POST Response:", res);
     const resData = await res.json();
     return resData.IpfsHash;
     
@@ -38,6 +39,7 @@ export async function uploadPublicFile(fileToUpload){
       method: "POST",
       body: data
     });
+    console.log("Public POST Response:", res);
     const resData = await res.json();
     return resData.IpfsHash;
 }

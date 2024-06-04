@@ -135,12 +135,12 @@ export const Mint = ()=> {
     }
     
     const uploadFile = async () =>{
-        const encryptedUri = await encryptData();
-        console.log("Successfully Encrypting File:", encryptedUri);
-        
         const publicCid = await uploadPublicFile(publicMetadata);
         const publicUri = `${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${publicCid}`
         console.log("Public Display:", publicUri);
+        
+        const encryptedUri = await encryptData();
+        console.log("Successfully Encrypting File:", encryptedUri);
         
         await setJsonMetadata(prevMetadata => ({
             ...prevMetadata,

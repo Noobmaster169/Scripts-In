@@ -43,7 +43,7 @@ export const Footer: FC = () => {
                                 </a>
                             </div>
                             <div className="mt-3 sm:text-left place-items-start items-start font-normal tracking-tight text-secondary">
-                                        © 2024 Sell In
+                                        © 2024 Scripts In
                             </div>
                         </div>
                     </div>
