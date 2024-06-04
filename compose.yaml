@@ -16,6 +16,5 @@ services:
         - path: ./package.lock.json
           action: rebuild
         - path: .
-          target: /src
+          target: /app
           action: sync
-

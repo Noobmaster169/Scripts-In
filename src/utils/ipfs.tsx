@@ -1,4 +1,6 @@
 import AES from 'crypto-js/aes';
+import SHA256 from 'crypto-js/sha256';
+import encHex from 'crypto-js/enc-hex';
 
 export async function encryptFile(fileToEncrypt, setFile) {
     var reader = new FileReader();
@@ -57,4 +59,20 @@ export async function uploadJSON(fileToUpload){
 
 export async function decryptData(fileUrl){
     
+}
+
+export async function generateRandomNumber(text: string, range: number) {
+  // TO FIX: AES encryption generates different encryption for same text for some reason
+  // const encryptedText = AES.encrypt(text, "your-secret-key").toString();
+  // console.log("Encrypted text:", encryptedText, "\n", text, "\n")
+  // const hash = SHA256(encryptedText).toString(encHex);
+
+  let sum = 0;
+  for (let i = 0; i < text.length; ++i) {
+    sum += text.charCodeAt(i);
+  }
+
+  const randomNumber = sum % range + 1;
+
+  return randomNumber;
 }
