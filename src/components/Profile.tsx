@@ -210,6 +210,8 @@ export const PostDisplay = ({address, wallet, item, connection, program}) =>{
             setLiked(true);
         }
     }
+
+    const route = useRouter();
     
     async function searchNFT(address){
         try{
@@ -218,17 +220,23 @@ export const PostDisplay = ({address, wallet, item, connection, program}) =>{
             //console.log("NFT:", nft)
             const generatedLikes = await generateRandomNumber(item.account.content, 50);
             
+            const openNFT = () =>{
+                route.push(`/nft/${mintAddress.toString()}`)
+            }
+            
             const user:any = await getUser(wallet, program);
             console.log("Setting NFT Data")
             setNFTData(
                 <CardDisplay>
                 <PostContainer>
-                    <PostImage>
+                    <PostImage onClick={openNFT}>
                         <Image width="250" height="250" src={nft.json.image} alt="Account Not Found"/>
                     </PostImage>
                     <ProfileInfo>
-                        <UserName>{nft.json.name}</UserName>
-                        <p>Created By: {nft.creators[0].address.toString()}</p>
+                        {/*<NFTTitle>
+                            <UserName>{nft.json.name}</UserName>
+                            <p>Created By: {nft.creators[0].address.toString()}</p>
+                        </NFTTitle>*/}
                         <UserContainer>
                             <PostProfileImage>
                                 <Image width="50" height="50" src={item.user? item.user.avatar : user.avatar} alt="Account Not Found"/>
@@ -243,7 +251,7 @@ export const PostDisplay = ({address, wallet, item, connection, program}) =>{
                             {item.account.content}
                         </PostContent>
                         <div className="flex items-start gap-5 max-w-full">
-                            <div className="flex flex-col w-full mr-5 max-w-full px-3.5">   
+                            <div>   
                                 <div className="flex mt-4 items-center gap-5">
                                 <div className="flex gap-2 cursor-pointer items-center" onClick={() => toggleLike()}>
                                     {liked ? (
@@ -291,15 +299,18 @@ const ProfileTitle = styled.div`
 `
 const ProfileInfo = styled.div`
     text-align:left;
-    margin: 0px 30px;
+    margin-left: 25px;
     width: 500px;
+    height: 200px;
+    padding: 5px 20px;
+    background: #333333;
 `
 const ProfileName = styled.div`
     font-size: 35px;
     font-weight: bold;
 `
 const UserName = styled.div`
-    font-size: 25px;
+    font-size: 22px;
     font-weight: bold;
     margin-bottom: -5px;
 `
@@ -307,7 +318,7 @@ const UserAddress = styled.div`
     font-size: 10px;
 `
 const PostContent = styled.div`
-    font-size: 20px;
+    font-size: 17px;
 `
 const PostImage = styled.div`
     width: 200px;
@@ -322,7 +333,7 @@ const PostProfileImage = styled.div`
     border-radius: 50px;
     background: #ffffff;
     overflow: hidden;
-    margin-right: 20px;
+    margin-right: 10px;
 `
 const ErrorNotification = styled.div`
     margin-top:20px;
@@ -366,7 +377,16 @@ const PostContainer = styled.div`
 const UserContainer = styled.div`
     display:flex;
     margin: 10px 0px;
-    
+`
+const NFTTitle = styled.div`
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background: #111111;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 15px; 
+    display: flex;
+    justify-content: center;
 `
 const InfoData = styled.div`
     margin-right: 20px;
