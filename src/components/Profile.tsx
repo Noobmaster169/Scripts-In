@@ -60,22 +60,25 @@ export const ProfileView = ()=>{
                             </CardImage>
                             <ProfileInfo>
                                 <ProfileName>{user.name}</ProfileName>
-                                <p>
+                                <ProfileAddress>
                                 <a href={`https://explorer.solana.com/address/${user.authority.toString()}/metadata?cluster=devnet`} target="_blank">
                                 {user.authority.toString()}
                                 </a>
-                                </p>
+                                </ProfileAddress>
+                                <ProfileDesc>
+                                    Hello, I'm {user.name}
+                                    {/*Hello, my name is Anne. I'm a loving grandma who enjoys cooking and baking. 
+                                    I'd like to share this exciting experiences by teaching you how to cook through cooking recipes & tutorial videos.
+                                    Enjoy ^_^*/}
+                                </ProfileDesc>
                                 <InfoContainer>
                                     <InfoData>
-                                        <InfoTitle>Total Posts</InfoTitle>
                                         <InfoTitle>SCRIPTS Points</InfoTitle>
                                     </InfoData>
                                     <InfoData>
                                         <div>:</div>
-                                        <div>:</div>
                                     </InfoData>
                                     <InfoData>
-                                        <div>{user.postCount}</div>
                                         <div>{user.postCount * 10} points</div>
                                     </InfoData>
                                 </InfoContainer>
@@ -232,7 +235,7 @@ export const PostDisplay = ({address, wallet, item, connection, program}) =>{
                     <PostImage onClick={openNFT}>
                         <Image width="250" height="250" src={nft.json.image} alt="Account Not Found"/>
                     </PostImage>
-                    <ProfileInfo>
+                    <PostProfile>
                         {/*<NFTTitle>
                             <UserName>{nft.json.name}</UserName>
                             <p>Created By: {nft.creators[0].address.toString()}</p>
@@ -271,7 +274,7 @@ export const PostDisplay = ({address, wallet, item, connection, program}) =>{
                                 </div>
                             </div>
                         </div>
-                    </ProfileInfo>
+                    </PostProfile>
                 </PostContainer>
                 </CardDisplay>
             )
@@ -300,6 +303,20 @@ const ProfileTitle = styled.div`
 const ProfileInfo = styled.div`
     text-align:left;
     margin-left: 25px;
+    width: 460px;
+    height: 250px;
+    padding: 5px 20px;
+    background: #333333;
+    overflow: hidden;
+`
+const ProfileAddress = styled.div`
+    color: #cccccc;
+    text-decoration: underline;
+    margin-top: -5px;
+`
+const PostProfile = styled.div`
+    text-align:left;
+    margin-left: 25px;
     width: 500px;
     height: 200px;
     padding: 5px 20px;
@@ -308,6 +325,10 @@ const ProfileInfo = styled.div`
 const ProfileName = styled.div`
     font-size: 35px;
     font-weight: bold;
+`
+const ProfileDesc = styled.div`
+    margin-top: 15px;
+    font-size: 15px;
 `
 const UserName = styled.div`
     font-size: 22px;
@@ -390,6 +411,7 @@ const NFTTitle = styled.div`
 `
 const InfoData = styled.div`
     margin-right: 20px;
+    font-weight: bold;
 `
 const InfoTitle = styled.div`
     font-weight: bold;
