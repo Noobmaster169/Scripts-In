@@ -19,7 +19,7 @@ Scripts In uses both on-chain and off-chain storage to store its protocol data.
 ![](public/structure.png)
 
 ## Script Points
-![](public/script_point.png)
+![](public/script_points.png)
 
 Scripts Points, stands for Share, Create, React, Invite, Post, Trade, Sell.
 
