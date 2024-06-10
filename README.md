@@ -1,23 +1,48 @@
-# Sell In
+# Scripts In
 
 ![](public/display_title.png) 
 
-The Decentralized Marketplace to Tokenize and Monetize your data into Encrypted NFTs.
+Scripts In is a Social-Fi protocol for creators to build their community and sell exclusive content through NFTs. By combining on-chain and decentralized storages, users would buy NFTs from creators to gain access to the content.
+
+The protocol also rewards both users and creators based on their platform activities with SCRIPTS Points. The system would encourage users to actively interact within the community to gain more SCRIPTS points.
 
 ## Links:
-- [Demo Video (1 minute)](https://youtu.be/fMATQ2lzTsE?si=-9o-uvqoKMtaHpYu)
-- [Pitch Video (1minute)](https://youtu.be/WPAjbi36pOY?si=6CmTWjXPaXoHJeMG)
+- [Demo Video (1 minute)](https://youtu.be/MtgrcHBjI4M)
+- [Pitch Video (3 minute)](https://youtu.be/Yi7RLjt4C-A)
+- [Link Tree](https://linktr.ee/scripts_in)
 
-## Empowering Encrypted NFTs for Secure Tokenized Data:
+## Empowering Encrypted NFTs for Exclusive Social Network Protocol:
+![](public/storage.png)
+
+Scripts In uses both on-chain and off-chain storage to store its protocol data.
+
 ![](public/structure.png)
 
-This is How Your Data Looks Like On IPFS:
-![](public/structure.png)
+## Script Points
+![](public/script_point.png)
+
+Scripts Points, stands for Share, Create, React, Invite, Post, Trade, Sell.
+
+Users and creators would be rewarded with this points for their activities.
+This system would promote community competition to be active in the protocol to earn more points, so they could earn rewards in the future projects. This would boost the activity within the community & ecosystem.
+
+The protocol revenues will then be used as community rewards for users based on their accumulated points, such as airdrops, rewards & benefits, as well as potential SCRIPTS IN token launch after its protocol's success.
+
+## Social Community
+
+This social platforms let creators build their online community to promote their exclusive contents.
+
+![](public/community.png)
+
 
 ## Display
 
-Sell In Home Page
-![](public/homepage.png) 
+SCRIPTS IN Home Page
+![](public/homepage1.png) 
+![](public/homepage2.png) 
+
+User Profile
+![](public/profile.png) 
 
 Example NFT On Sell In
 ![](public/nft_display.png) 
