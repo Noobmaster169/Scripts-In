@@ -171,7 +171,6 @@ export const PostSection = ({wallet, program, connection}) =>{
                 </ProfileTitle>
             </CardContainer>
             {posts ? posts.map((item, key)=>{
-                let blank = key;
                 return(
                     <div>
                         <PostDisplay
@@ -180,6 +179,7 @@ export const PostSection = ({wallet, program, connection}) =>{
                             item = {item}
                             connection = {connection}
                             program = {program}
+                            key={key}
                         />
                     </div>
                 );
@@ -189,7 +189,7 @@ export const PostSection = ({wallet, program, connection}) =>{
     )
 }
 
-export const PostDisplay = ({address, wallet, item, connection, program}) =>{
+export const PostDisplay = ({address, wallet, item, connection, program, key}) =>{
     const quicknodeEndpoint = process.env.NEXT_PUBLIC_RPC || clusterApiUrl('devnet');
     const { AiFillHeart } = require('react-icons/ai');
     const { IoShareSocialSharp, IoEllipsisHorizontal } = require('react-icons/io5');
@@ -289,7 +289,7 @@ export const PostDisplay = ({address, wallet, item, connection, program}) =>{
     }, [address, wallet, connection])
 
     return (
-        <>{NFTData}</>
+        <div key={key}>{NFTData}</div>
     )
 }
 

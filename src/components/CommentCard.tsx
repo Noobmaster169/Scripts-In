@@ -226,7 +226,7 @@ export const CommentDisplay = ({NFTAddress, accountUser, comments, postId, addCo
 
       {comments.map((item, key)=>{
         return(
-          <div className="flex justify-between py-5 border-b border-[#3c3c3c] border-1">
+          <div key={key} className="flex justify-between py-5 border-b border-[#3c3c3c] border-1">
             <div className="flex items-start gap-5 max-w-full">
               {/* Profile Picture */}
               <Image
