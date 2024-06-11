@@ -171,6 +171,7 @@ export const PostSection = ({wallet, program, connection}) =>{
                 </ProfileTitle>
             </CardContainer>
             {posts ? posts.map((item, key)=>{
+                let blank = key;
                 return(
                     <div>
                         <PostDisplay

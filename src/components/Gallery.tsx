@@ -150,6 +150,7 @@ const FeaturedPosts = ()=>{
         </TitleContainer>
         <div>
             {posts ? posts.map((item, key)=>{
+                let blank = key;
                 return(
                     <PostDisplay
                         address = {item.account.title}
