@@ -23,7 +23,6 @@ export const AppBar: React.FC = () => {
           <div className="hidden sm:inline w-22 h-22 md:p-2 ml-5">
             <Image src={"https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmczpZP76huJbRVsKnRFzTQNbyEfgVYtffGzHbzKfH8bQL"} alt="Scripts In Logo" width={250} height={48} />
           </div>
-          <WalletMultiButtonDynamic className="btn-ghost btn-sm relative flex md:hidden text-lg " />
         </div>
 
         {/* Nav Links */}

@@ -45,7 +45,7 @@ const NavElement = ({
             scroll={scroll}
             passHref
             className={cn(
-                'group flex h-full flex-col items-center justify-between',
+                'group mt-2 flex h-full flex-col items-center justify-between',
                 disabled &&
                     'pointer-events-none cursor-not-allowed opacity-50',
             )}
