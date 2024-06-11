@@ -149,7 +149,7 @@ const FeaturedPosts = ()=>{
             </GalleryTitle>
         </TitleContainer>
         <div>
-            {posts ? posts.map((item)=>{
+            {posts ? posts.map((item, key)=>{
                 return(
                     <PostDisplay
                         address = {item.account.title}

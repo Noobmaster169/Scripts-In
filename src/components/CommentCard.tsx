@@ -63,7 +63,7 @@ export const CommentCard = ({id})=>{
       }else{
         setRes(
           <CardDisplay>
-            <ErrorNotification>You Haven't Been Registered As A User</ErrorNotification>
+            <ErrorNotification>{"You Haven't Been Registered As A User"}</ErrorNotification>
             <CardContainer>
                 <Image width="300" height="300" src ="https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmYDF3xNce1wsBAxoQ4ayRYhyXzWjSYRDVZp4RphufG9PH" alt="Account Not Found"/>
             </CardContainer>
@@ -224,7 +224,7 @@ export const CommentDisplay = ({NFTAddress, accountUser, comments, postId, addCo
         </div>
       </div>
 
-      {comments.map((item, index)=>{
+      {comments.map((item, key)=>{
         return(
           <div className="flex justify-between py-5 border-b border-[#3c3c3c] border-1">
             <div className="flex items-start gap-5 max-w-full">

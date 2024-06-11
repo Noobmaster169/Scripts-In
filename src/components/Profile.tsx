@@ -66,7 +66,7 @@ export const ProfileView = ()=>{
                                 </a>
                                 </ProfileAddress>
                                 <ProfileDesc>
-                                    Hello, I'm {user.name}
+                                    {`Hello, I'm ${user.name}`}
                                     {/*Hello, my name is Anne. I'm a loving grandma who enjoys cooking and baking. 
                                     I'd like to share this exciting experiences by teaching you how to cook through cooking recipes & tutorial videos.
                                     Enjoy ^_^*/}
@@ -94,7 +94,7 @@ export const ProfileView = ()=>{
             }else{
                 setResponse(
                     <CardDisplay>
-                        <ErrorNotification>You Haven't Been Registered As A User</ErrorNotification>
+                        <ErrorNotification>{"You Haven't Been Registered As A User"}</ErrorNotification>
                         <CardContainer>
                             <Image width="300" height="300" src ="https://ivory-vivacious-rooster-272.mypinata.cloud/ipfs/QmYDF3xNce1wsBAxoQ4ayRYhyXzWjSYRDVZp4RphufG9PH" alt="Account Not Found"/>
                         </CardContainer>
@@ -170,7 +170,7 @@ export const PostSection = ({wallet, program, connection}) =>{
                     Latest Posts
                 </ProfileTitle>
             </CardContainer>
-            {posts ? posts.map((item)=>{
+            {posts ? posts.map((item, key)=>{
                 return(
                     <div>
                         <PostDisplay
