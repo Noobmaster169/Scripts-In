@@ -172,7 +172,7 @@ export const PostSection = ({wallet, program, connection}) =>{
             </CardContainer>
             {posts ? posts.map((item, key)=>{
                 return(
-                    <div>
+                    <div key ={key}>
                         <PostDisplay
                             address = {item.account.title}
                             wallet = {wallet}
